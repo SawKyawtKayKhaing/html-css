@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(238, 201, 174);
+        }
+        table{
+            width: 70%;
+            border-collapse: collapse;
+            border:1px solid black;
+
+        }
+        td,th{
+            text-align: center;
+            border:1px solid rgb(192, 79, 79);
+            padding:10px;
+            
+
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <h2>Student Registration</h2>
+    <input type="text" id="num1"  placeholder="Name" ><br><br>
+    <input type="text" id="num2"  placeholder="Phone" ><br><br>
+    <input type="text" id="num3"  placeholder="Email"><br><br>
+    <textarea id="txt" placeholder="Address"></textarea><br>
+
+    <input type="radio" id="gender" name="gender" value="Male">
+    <label id="gender">Male</label>
+
+    <input type="radio" id="gender" name="gender" value="Female">
+    <label id="gender">Female</label><br><br>
+
+    <input type="checkbox" name="Lang" value="501">
+    <label id="Lang">501</label>
+    <input type="checkbox"  name="Lang" value="502">
+    <label id="Lang">502</label>
+    <input type="checkbox" name="Lang" value="503">
+    <label id="Lang">503</label><br><br>
+
+
+    <button type="submit" style=border-radius:30% onclick="student()">SUBMIT</button>
+    
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>PhoneNo</th>
+            <th>E-mail</th>
+            
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Language</th>
+
+        </tr>
+        <tbody id="body"></tbody>
+    </table>
+
+    <script>
+        var studentList=[];
+        function student(value,index,array){
+            
+            var name=document.getElementById("num1").value;
+            var phone=document.getElementById("num2").value;
+            var Email=document.getElementById("num3").value;
+            var Address=document.getElementById("txt").value;
+            var Gender=document.getElementsByName("gender");
+            var radiobtn="";
+            for(var i=0;i<Gender.length;i++){
+                if(Gender[i].checked)
+                 radiobtn=Gender[i].value;
+            }
+            var Language=document.getElementsByName("Lang");
+            var checkbtn="";
+            for(var i=0;i<Language.length;i++){
+                if(Language[i].checked)
+                checkbtn+=Language[i].value;
+            }
+            
+            var std={stdName:name,stdPhone:phone,stdEmail:Email,stdAddress:Address,stdGender:radiobtn,stdLang:checkbtn};
+            studentList.push(std);0
+            var a=document.getElementById("body");
+            var b=document.createElement("tr");
+            a.appendChild(b);
+            var c=document.createElement("td");
+            var item1=document.createTextNode(name);
+            c.appendChild(item1);
+            b.appendChild(c);
+            
+            var d=document.createElement("td");
+            var item2=document.createTextNode(phone);
+            d.appendChild(item2);
+            b.appendChild(d);
+            
+            var e=document.createElement("td");
+            var item3=document.createTextNode(Email);
+            e.appendChild(item3);
+            b.appendChild(e);
+
+            var f=document.createElement("td");
+            var item4=document.createTextNode(Address);
+            f.appendChild(item4);
+            b.appendChild(f);
+
+            var g=document.createElement("td");
+            var item5=document.createTextNode(radiobtn);
+            g.appendChild(item5);
+            b.appendChild(g);
+
+
+            var h=document.createElement("td");
+            var item6=document.createTextNode(checkbtn);
+            h.appendChild(item6);
+            b.appendChild(h);
+            
+            
+            
+
+            
+
+       
+           
+           
+           
+        }
+         
+    </script>
+</body>
+</html>
