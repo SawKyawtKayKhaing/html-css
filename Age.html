@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    function myFunction(){
+        var d = new Date();
+        var currentdate=d.getFullYear();
+        var inputdate=document.getElementById("demo").value;
+        var result=new Date(inputdate);
+        var date=result.getFullYear();
+        var answer=currentdate-date;
+        if(answer<18){
+            alert("You are under 18");
+        }
+        else{
+            alert("You are over 18");
+        }
+                
+            }
+            
+            
+        
+    </script>
+</head>
+<body>
+
+    <input type="date" id="demo"><br>
+<button onclick="myFunction()">Try it</button>
+
+
+
+
+
+</body>
+</html>
