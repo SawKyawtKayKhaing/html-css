@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function Divide()
+        {
+        var number1=parseInt(document.getElementById("num1").value);
+        var number2=parseInt(document.getElementById("num2").value);
+        var i;
+        document.getElementById("evenNum").innerHTML+="Even Number:"
+        document.getElementById("oddNum").innerHTML+="Odd Number:"
+        for(i=number1;i<=number2;i++)
+        {
+            if (i%2==0  ){
+                document.getElementById("evenNum").innerHTML+=parseInt(i);
+            } 
+            else{
+                document.getElementById("oddNum").innerHTML+=parseInt(i);
+            }  
+        }
+      }
+      
+    </script>
+</head>
+
+    <body>
+        <label>Enter first number</label><br>
+        <input type="text" id="num1"><br><br>
+        <label>Enter second number</label><br>
+        <input type="text" id="num2"><br><br>
+        <button type="submit" onclick="Divide()">Try it</button>
+        
+        <p id="evenNum"></p><br>
+        <p id="oddNum"></p><br>
+        
+    
+</body>
+</html>
