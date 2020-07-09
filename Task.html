@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Today Task</h2>
+    <label >Task Name</label>
+    <input type="text" id="task" style=border-radius:10%>
+    
+    <button type="button" style=border-radius:30% onclick="taskFun()">ADD</button><br><br>
+    <label>Task List</label><br>
+    <section id="res" style="width:250px;">
+
+    </section>
+
+
+    <script>
+        
+        
+        
+        function taskFun(){
+            var result=document.getElementById("task").value;  
+            var input=document.getElementById("res");
+            var p=document.createElement("p");
+            var btn=document.createElement("button");
+            btn.setAttribute("class","fa fa-remove");
+            btn.style.float="right";
+            p.style.border="1px solid black";
+            //input.appendChild(Answer);
+            p.appendChild(document.createTextNode(result));
+            p.appendChild(btn);
+            input.appendChild(p);
+            
+            btn.addEventListener("click",removeFun);
+            function removeFun()
+            {
+                input.removeChild(p);
+            }
+            
+            
+        }
+        
+    </script>
+    
+</body>
+</html>
