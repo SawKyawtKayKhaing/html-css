@@ -1,0 +1,144 @@
+mysql> select * from Team;
++-----+-------------+-------------+
+| tid | name        | foundeddate |
++-----+-------------+-------------+
+|   1 | Manu        | 2000-11-12  |
+|   2 | Barcelona   | 1890-07-11  |
+|   3 | Liverpool   | 1892-07-01  |
+|   4 | Chelsea     | 1905-07-01  |
+|   5 | Arsenal     | 1886-07-10  |
+|   6 | Man City    | 1880-11-10  |
+|   7 | Real Madrid | 1890-05-14  |
+|   8 | Juventus    | 1995-08-12  |
+|   9 | Everton     | 1992-03-20  |
+|  10 | Napoli      | 1895-12-02  |
++-----+-------------+-------------+
+10 rows in set (0.00 sec)
+
+
+mysql> select * from Player;
++-----+----------------+---------+------+--------+--------+--------+
+| pid | name           | jersyno | age  | salary | teamId | height |
++-----+----------------+---------+------+--------+--------+--------+
+|   1 | Ronaldo        | 10      |   24 | 700000 |      1 | 6      |
+|   2 | Lionel Messi   | 11      |   25 | 800000 |      2 | 5.8    |
+|   3 | Xavi           | 9       |   27 | 750000 |      3 | 5.8    |
+|   4 | Andres Iniesta | 7       |   32 | 750000 |      4 | 6      |
+|   5 | Neymar         | 13      |   20 | 800000 |      5 | 6      |
+|   6 | Oscar          | 8       |   21 | 700000 |      6 | 6.1    |
+|   7 | Hulk           | 7       |   26 | 500000 |      7 | 5.7    |
+|   8 | John Terry     | 5       |   32 | 550000 |      8 | 5.6    |
+|   9 | Joe Hart       | 1       |   25 | 650000 |      9 | 6.5    |
+|  10 | Eden Hazard    | 3       |   21 | 600000 |     10 | 5      |
+|  11 | Willian        | 4       |   25 | 700000 |      1 | 5.3    |
++-----+----------------+---------+------+--------+--------+--------+
+11 rows in set (0.00 sec)
+
+
+mysql> select * from Player where teamId="1";
++-----+---------+---------+------+--------+--------+--------+
+| pid | name    | jersyno | age  | salary | teamId | height |
++-----+---------+---------+------+--------+--------+--------+
+|   1 | Ronaldo | 10      |   24 | 700000 |      1 | 6      |
++-----+---------+---------+------+--------+--------+--------+
+1 row in set (0.04 sec)
+
+mysql> select * from Player where teamId="2";
++-----+--------------+---------+------+--------+--------+--------+
+| pid | name         | jersyno | age  | salary | teamId | height |
++-----+--------------+---------+------+--------+--------+--------+
+|   2 | Lionel Messi | 11      |   25 | 800000 |      2 | 5.8    |
++-----+--------------+---------+------+--------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select name from Player where salary>500000;
++----------------+
+| name           |
++----------------+
+| Ronaldo        |
+| Lionel Messi   |
+| Xavi           |
+| Andres Iniesta |
+| Neymar         |
+| Oscar          |
+| John Terry     |
+| Joe Hart       |
+| Eden Hazard    |
++----------------+
+9 rows in set (0.04 sec)
+
+mysql> select name,(select SUM(salary) from Player where Player.teamId=Team.tid) as Salary from Team;
++-------------+---------+
+| name        | Salary  |
++-------------+---------+
+| Manu        | 1400000 |
+| Barcelona   |  800000 |
+| Liverpool   |  750000 |
+| Chelsea     |  750000 |
+| Arsenal     |  800000 |
+| Man City    |  700000 |
+| Real Madrid |  500000 |
+| Juventus    |  550000 |
+| Everton     |  650000 |
+| Napoli      |  600000 |
++-------------+---------+
+10 rows in set (0.00 sec)
+mysql> select * from Player where height<6;
++-----+--------------+---------+------+--------+--------+--------+
+| pid | name         | jersyno | age  | salary | teamId | height |
++-----+--------------+---------+------+--------+--------+--------+
+|   2 | Lionel Messi | 11      |   25 | 800000 |      2 | 5.8    |
+|   3 | Xavi         | 9       |   27 | 750000 |      3 | 5.8    |
+|   7 | Hulk         | 7       |   26 | 500000 |      7 | 5.7    |
+|   8 | John Terry   | 5       |   32 | 550000 |      8 | 5.6    |
+|  10 | Eden Hazard  | 3       |   21 | 600000 |     10 | 5      |
++-----+--------------+---------+------+--------+--------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Player where height<5;
+Empty set (0.00 sec)
+
+
+mysql>  select name,(select AVG(salary) from Player where Player.teamId=Team.tid) as Average_Salary from Team;
++-------------+----------------+
+| name        | Average_Salary |
++-------------+----------------+
+| Manu        |    700000.0000 |
+| Barcelona   |    800000.0000 |
+| Liverpool   |    750000.0000 |
+| Chelsea     |    750000.0000 |
+| Arsenal     |    800000.0000 |
+| Man City    |    700000.0000 |
+| Real Madrid |    500000.0000 |
+| Juventus    |    550000.0000 |
+| Everton     |    650000.0000 |
+| Napoli      |    600000.0000 |
++-------------+----------------+
+10 rows in set (0.08 sec)
+
+mysql> select name,salary from Player where salary in(select MIN(salary) from Player);
++------+--------+
+| name | salary |
++------+--------+
+| Hulk | 500000 |
++------+--------+
+1 row in set (0.10 sec)
+
+mysql> select name,salary from Player where salary in(select MAX(salary) from Player);
++--------------+--------+
+| name         | salary |
++--------------+--------+
+| Lionel Messi | 800000 |
+| Neymar       | 800000 |
++--------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select name from Player where age>30 AND salary>200000;
++----------------+
+| name           |
++----------------+
+| Andres Iniesta |
+| John Terry     |
++----------------+
+2 rows in set (0.00 sec)
+
